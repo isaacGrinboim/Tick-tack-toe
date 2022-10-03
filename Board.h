@@ -22,18 +22,12 @@ private:
 public:
      Board();
      ~Board() = default;
-    // void putSymbol(int i, int j, Symbol symbol);
+     void putSymbol(int i, int j, Symbol symbol);
      friend ostream& operator<<(ostream& os, Board& board);
 
 
 };
 
-
-
-// void Board::putSymbol(int i, int j, Symbol symbol){
-//      if (!(0<=(i-1)&&(i-1)<=2 && 0<=(j-1)&&(j-1)<=2)){throw InvalidIndex();}
-//      board[i][j] = symbol;
-// }
 
 
 
