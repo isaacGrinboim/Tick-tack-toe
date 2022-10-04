@@ -5,7 +5,7 @@ void PlayerMove::makeMove() {
      cout<< "Please enter row number and column number"<<endl;
      cin>> i >> j;
      board->putSymbol(i,j,symbol);
-     cout<< board<<
+     cout<< board<<endl;//אחר כך משתנה התור בגיים
 
 
 }
