@@ -3,8 +3,8 @@
 class PlayerMove:public Move
 {
 public:
-     PlayerMove(Board* board):Move(board){}
-     ~PlayerMove();
+     PlayerMove(Board* board,Symbol symbol):Move(board,symbol){}
+     ~PlayerMove() = default;
      void makeMove() override;
 };
 

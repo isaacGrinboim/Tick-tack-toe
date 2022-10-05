@@ -3,8 +3,8 @@
 #include "PlayerMove.h"
 #include "ComputerMove.h"
 
-enum CurrentTurn{Player,Computer};
-enum Level{Easy,Moderate,Hard};
+enum class CurrentTurn{Player,Computer};
+enum class Level{Easy,Moderate,Hard};
 
 class Game
 {
@@ -19,8 +19,7 @@ private:
 
 
 public:
-     Game(CurrentTurn firstTurn, Symbol symbol = Symbol::X, Level level=Level::Easy):
-     turn(firstTurn),level(level){}
+     Game(CurrentTurn firstTurn, Symbol symbol = Symbol::X, Level level=Level::Easy);
      void makeMove();//תהיה בדיקה איזה תור זה
      //לפי זה ניצור אינסטנס של command
      //נעשה את המתודה שלו ונשמור אותו בוקטור

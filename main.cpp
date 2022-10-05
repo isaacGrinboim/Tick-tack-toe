@@ -1,15 +1,15 @@
 #include "Game.h"
 
 int main(){
-     CurrentTurn playerStarts = CurrentTurn::Player;
+     //CurrentTurn playerStarts = CurrentTurn::Player;
      //turn = Player wants to be first -> turn = 0;
 
      
-     Game newGame(playerStarts);
-     newGame.makeMove();
-     // for (int i = 0; i < 3; i++){
-     //      newGame.makeMove();
-     // }
+     Game newGame(CurrentTurn::Player);
+     
+     for (int i = 0; i < 20; i++){
+          newGame.makeMove();
+     }
      
 
 

@@ -11,7 +11,7 @@ protected:
      Symbol symbol;
 
 public:
-     Move(Board* board):board(board){}
+     Move(Board* board, Symbol symbol):board(board),symbol(symbol){}
      virtual ~Move() = default;
      virtual void makeMove() = 0;
 

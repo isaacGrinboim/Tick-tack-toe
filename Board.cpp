@@ -22,7 +22,7 @@ ostream& operator<<(ostream& os, Board& board){
 }
 
 void Board::putSymbol(int i, int j, Symbol symbol){
-     if (!(0<=(i-1)&&(i-1)<=2 && 0<=(j-1)&&(j-1)<=2)){throw InvalidIndex();}
+    // if (!(0<=(i-1)&&(i-1)<=2 && 0<=(j-1)&&(j-1)<=2)){throw InvalidIndex();}
     // if (board[i][j] != Symbol::Empty){throw Invalid}
      board[i-1][j-1] = symbol;
 }
