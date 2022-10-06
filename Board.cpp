@@ -22,16 +22,12 @@ ostream& operator<<(ostream& os, Board& board){
 }
 
 bool Board::putSymbol(int i, int j, Symbol symbol){
-
-     bool notInBoard = !inBounds(i,j);// מחזיק האם זה מחוץ לטווח(צריך לקבל מספר גדול מאפס)
-     bool placeTaken = !isFree(i,j);// מחזיק האם זה לא ריק(צריך לקבל מספר גדול מאפס)
-
-     if(notInBoard){
+     if(!inBounds(i,j)){
           cout<<"This is not a game! Choose a valid place!"<<endl;
           cout<<"Please enter valid row and column numbers"<<endl;
           return false;
           }
-     else if(placeTaken){
+     else if(!isFree(i,j)){
           cout<<"This place is already taken!"<<endl;
           cout<<"Please enter valid row and column numbers"<<endl;
           return false;
