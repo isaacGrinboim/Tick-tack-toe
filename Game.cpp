@@ -21,9 +21,12 @@ void Game::makeMove(){
           
      }
      else{
-          Move* newMove = new ComputerMove(&board, symbols[1]);
-          newMove->makeMove();
-          moves.push_back(newMove);
+          if(level == Level::Easy){
+               Move* newMove = new EasyComputerMove(&board, symbols[1]);
+               newMove->makeMove();
+               moves.push_back(newMove);
+          }
+
      }
 
      //checkWin();

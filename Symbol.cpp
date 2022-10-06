@@ -10,3 +10,4 @@ ostream& operator<<(ostream& os, Symbol& symbol) {
     }
     return os;
 }
+

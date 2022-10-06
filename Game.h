@@ -1,7 +1,7 @@
 #include "Board.h"
 #include <vector>
 #include "PlayerMove.h"
-#include "ComputerMove.h"
+#include "EasyComputerMove.h"
 
 enum class CurrentTurn{Player,Computer};
 enum class Level{Easy,Moderate,Hard};

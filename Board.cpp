@@ -26,3 +26,7 @@ void Board::putSymbol(int i, int j, Symbol symbol){
     // if (board[i][j] != Symbol::Empty){throw Invalid}
      board[i-1][j-1] = symbol;
 }
+
+bool Board::isFree(int i, int j){
+     return board[i][j]==Symbol::Empty;
+}

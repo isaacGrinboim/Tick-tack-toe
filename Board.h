@@ -24,7 +24,8 @@ public:
      ~Board() = default;
      void putSymbol(int i, int j, Symbol symbol);
      friend ostream& operator<<(ostream& os, Board& board);
-
+     bool isFree(int i, int j);
+     
 
 };
 
