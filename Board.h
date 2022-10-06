@@ -25,6 +25,7 @@ public:
      bool putSymbol(int i, int j, Symbol symbol);
      friend ostream& operator<<(ostream& os, Board& board);
      bool isFree(int i, int j);
+     bool inBounds(int i, int j);
      bool horizontalCheck(int i);
      bool verticalCheck(int j);
      bool diagonalCheck(int i, int j);

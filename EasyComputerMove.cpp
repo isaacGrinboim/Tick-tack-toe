@@ -13,9 +13,10 @@ void EasyComputerMove::makeMove(int* row, int* col) {
           if(board->isFree(randomNumber/BOARD_SIZE,randomNumber%BOARD_SIZE)){
                sleep_for(nanoseconds(10));
                sleep_until(system_clock::now() + seconds(1));
-               *row = randomNumber/BOARD_SIZE;
-               *col = randomNumber%BOARD_SIZE;
-               board->putSymbol((randomNumber/BOARD_SIZE+1),(randomNumber%BOARD_SIZE+1), symbol);
+               *row = randomNumber/BOARD_SIZE+1;
+               *col = randomNumber%BOARD_SIZE+1;
+               cout<<"Row is: "<<*row<<" and col is: "<<*col<<endl;
+               board->putSymbol(*row,*col, symbol);
                return;
           }
           else{
