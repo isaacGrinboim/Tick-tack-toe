@@ -31,7 +31,8 @@ public:
 //נקרא למתודה הוירטואלית המתאימה של מהלך
 //אחר כך נעשה בכל מקרה בדיקת נצחון
 
-
+     void checkWin(int i, int j, CurrentTurn turn);
 
 };
 
+ostream& operator<<(ostream& os, CurrentTurn& turn);

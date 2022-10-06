@@ -13,24 +13,27 @@ Game::Game(CurrentTurn firstTurn, Symbol symbol, Level level):
      */
 }
 void Game::makeMove(){
+     int i=0, j=0;
      if  (turn == CurrentTurn::Player){
           Move* newMove = new PlayerMove(&board, symbols[0]);
           
-          newMove->makeMove();
+          newMove->makeMove(&i,&j);
           moves.push_back(newMove);
           
      }
      else{
           if(level == Level::Easy){
                Move* newMove = new EasyComputerMove(&board, symbols[1]);
-               newMove->makeMove();
+               newMove->makeMove(&i,&j);
                moves.push_back(newMove);
           }
 
      }
 
-     //checkWin();
      cout<<board<<endl;
+     
+     checkWin(i,j,turn);
+
 
      changeTurn();
 
@@ -40,3 +43,23 @@ void Game::changeTurn(){
      if(turn == CurrentTurn::Computer)turn = CurrentTurn::Player;
      else turn = CurrentTurn::Computer;
 }
+void Game::checkWin(int i, int j, CurrentTurn turn){
+     if(board.diagonalCheck(i,j)||board.horizontalCheck(i)||board.verticalCheck(j)){
+          cout<<turn<<endl;
+     }
+
+}
+
+ostream& operator<<(ostream& os, CurrentTurn& turn){
+     switch(turn)
+    {
+        case CurrentTurn::Computer:    os<<"You have lot to the computer";      break;
+        case CurrentTurn::Player:      os<<"Congratulations! You have won!";    break;
+    }
+    return os;
+}
+
+
+// #  #  #
+// #  #  #
+// #  #  #
