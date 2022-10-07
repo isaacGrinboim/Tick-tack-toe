@@ -23,7 +23,9 @@ void Game::makeMove(){
      }
      else{
           if(level == Level::Easy){
-               Move* newMove = new EasyComputerMove(&board, symbols[1]);
+               //Abstract Factory:
+               Move* newMove = makeComputerMove(level, &board, symbols[1]);
+               //Move* newMove = new EasyComputerMove(&board, symbols[1]);
                newMove->makeMove(&i,&j);
                moves.push_back(newMove);
           }
@@ -63,3 +65,17 @@ ostream& operator<<(ostream& os, CurrentTurn& turn){
 // #  #  #
 // #  #  #
 // #  #  #
+
+//Factory:
+
+Move* Game::makeComputerMove(Level level, Board* board, Symbol symbol){
+     switch(level)
+     {
+     case Level::Easy: cout<<endl<<"Success"<<endl;  return new EasyComputerMove(board, symbol);  break;
+     case Level::Moderate: return new EasyComputerMove(board, symbol);                       break;
+     case Level::Hard:   return new EasyComputerMove(board, symbol);                         break;
+     default: return new EasyComputerMove(board, symbol);
+     break;
+     }
+}
+
