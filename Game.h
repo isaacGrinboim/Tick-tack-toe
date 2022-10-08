@@ -5,6 +5,7 @@
 
 enum class CurrentTurn{Player,Computer};
 enum class Level{Easy,Moderate,Hard};
+enum class GameState{Win,Loss,Tie};
 
 class Game
 {
@@ -15,6 +16,8 @@ private:
      vector<Move*> moves;
      Symbol symbols[2];
      Level level;
+     bool isGameOver;//להוסיף לרשימת אתחול
+     GameState state;
 //במשחק צריך להקליד אם אתה ראשון ואם אתה איקס או עיגול
 
 
@@ -31,7 +34,10 @@ public:
 //נקרא למתודה הוירטואלית המתאימה של מהלך
 //אחר כך נעשה בכל מקרה בדיקת נצחון
 
+     
      void checkWin(int i, int j, CurrentTurn turn);
+     void declareWinner();
+     Move* makeComputerMove(Level level, Board* board, Symbol symbol);//Factory
 
 };
 

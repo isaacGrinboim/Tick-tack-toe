@@ -39,7 +39,7 @@ bool Board::putSymbol(int i, int j, Symbol symbol){
 }
 
 bool Board::isFree(int i, int j){
-     cout<<endl<<"isFree Check:"<<endl<<"i is: "<<i<<"  and j is: "<<j <<endl<<endl;
+     //cout<<endl<<"isFree Check:"<<endl<<"i is: "<<i<<"  and j is: "<<j <<endl<<endl;
      return board[i-1][j-1]==Symbol::Empty;
 }
 bool Board::inBounds(int i, int j){
@@ -77,3 +77,13 @@ bool Board::verticalCheck(int j){
           }
           return win;
      }
+bool Board::boardFull()const{
+     for (int i=0; i<BOARD_SIZE; ++i){
+          for(int j=0; j<BOARD_SIZE; ++j){
+               if(board[i][j]==Symbol::Empty){
+                    return false;
+               }
+          }
+     }
+     return true;
+}

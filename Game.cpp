@@ -2,7 +2,7 @@
 #include "Game.h"
 
 Game::Game(CurrentTurn firstTurn, Symbol symbol, Level level):
-     turn(firstTurn), level(level){
+     turn(firstTurn), level(level),isGameOver(false){
      symbols[0] = symbol;
      if(symbol==Symbol::O) symbols[1] = Symbol::X;
      else symbols[1] = Symbol::O;
@@ -16,24 +16,33 @@ void Game::makeMove(){
      int i=0, j=0;
      if  (turn == CurrentTurn::Player){
           Move* newMove = new PlayerMove(&board, symbols[0]);
-          
           newMove->makeMove(&i,&j);
           moves.push_back(newMove);
           
      }
      else{
-          if(level == Level::Easy){
-               Move* newMove = new EasyComputerMove(&board, symbols[1]);
+     //     if(level == Level::Easy){
+               //Abstract Factory:
+               Move* newMove = makeComputerMove(level, &board, symbols[1]);
+               //Move* newMove = new EasyComputerMove(&board, symbols[1]);
                newMove->makeMove(&i,&j);
                moves.push_back(newMove);
-          }
+     //     }
 
      }
 
      cout<<board<<endl;
      
-     checkWin(i,j,turn);
+     checkWin(i,j,turn);//להפוך את זה לבוליאני כדי שיהיה אפשר לפי זה להגיד אם נגמר לעדכן משתנה
+     /*
+     if(checkWin(i,j,turn) || gameBoardFull() ){
+          isGameOver = true;
+     }
+     else{
+          changeTurn();//ככה רק אם לא נגמר המשחק נשנה את התור.
 
+     }
+     */
 
      changeTurn();
 
@@ -46,15 +55,23 @@ void Game::changeTurn(){
 void Game::checkWin(int i, int j, CurrentTurn turn){
      if(board.diagonalCheck(i,j)||board.horizontalCheck(i)||board.verticalCheck(j)){
           cout<<turn<<endl;
-     }
 
+     //   isGameOver = true;
+     //   switch(turn)
+     //
+     //
+     //   declareWinner(); 
+     //        
+     //   return true
+     }
+     //return false;
 }
 
 ostream& operator<<(ostream& os, CurrentTurn& turn){
      switch(turn)
     {
-        case CurrentTurn::Computer:    os<<"You have lot to the computer";      break;
-        case CurrentTurn::Player:      os<<"Congratulations! You have won!";    break;
+        case CurrentTurn::Computer:    os<<"You have lost to the computer";      break;
+        case CurrentTurn::Player:      os<<"Congratulations! You have won!";     break;
     }
     return os;
 }
@@ -63,3 +80,42 @@ ostream& operator<<(ostream& os, CurrentTurn& turn){
 // #  #  #
 // #  #  #
 // #  #  #
+
+//Factory:
+
+Move* Game::makeComputerMove(Level level, Board* board, Symbol symbol){
+     switch(level)
+     {
+     case Level::Easy:       return new EasyComputerMove(board, symbol);    break;
+     //case Level::Moderate: return new ModerateComputerMove(board, symbol);  break;
+     //case Level::Hard:     return new HardComputerMove(board, symbol);      break;
+     default: return new EasyComputerMove(board, symbol);
+     break;
+     }
+}
+//gameBoardFull{
+//     if(board.boardFull()){
+//          if(!checkWin())     
+//               state = State::Tie;
+//          return true; 
+//     }
+//     return false;
+//}
+//bool Game::gameOver(GameState* state){
+//*state = this->state;     
+//return isGameOver;
+//}
+
+
+void Game::declareWinner(){
+     switch (turn)
+     {
+     case CurrentTurn::Player:
+          state = GameState::Win;
+          break;
+     case CurrentTurn::Computer:
+          state = GameState::Loss;
+     default:
+          break;
+     }
+}

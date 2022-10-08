@@ -29,6 +29,7 @@ public:
      bool horizontalCheck(int i);
      bool verticalCheck(int j);
      bool diagonalCheck(int i, int j);
+     bool boardFull() const;
      
 
 };
