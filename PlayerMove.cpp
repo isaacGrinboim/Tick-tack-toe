@@ -5,7 +5,7 @@ void PlayerMove::makeMove(int* row, int* col) {
      cout<< "Please enter row number and column number"<<endl;
      cin>> i >> j;
 
-     while(!board->putSymbol(i,j,symbol)){
+     while(!board->playerPutSymbol(i,j,symbol)){
           cin>> i >> j;
      }
      *row = i;

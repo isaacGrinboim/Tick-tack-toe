@@ -9,12 +9,16 @@ void EasyComputerMove::makeMove(int* row, int* col) {
      //צריך לחכות שנייה ורק אז להדפיס    
      int randomNumber = rand()%(BOARD_SIZE*BOARD_SIZE);// אולי למצוא דרך אחרת להגריל מספר
      do{
-          randomNumber = (randomNumber+1)%(BOARD_SIZE*BOARD_SIZE);
-          sleep_for(nanoseconds(10));
-          sleep_until(system_clock::now() + seconds(1));
           *row = randomNumber/BOARD_SIZE+1;
           *col = randomNumber%BOARD_SIZE+1;
-     }while(!board->putSymbol(*row,*col,symbol));
+          randomNumber = (randomNumber+1)%(BOARD_SIZE*BOARD_SIZE);
+          if(board->isFree(*row,*col))
+          {
+               sleep_for(nanoseconds(10));
+               sleep_until(system_clock::now() + seconds(1));
+          }
+
+     }while(!board->computerPutSymbol(*row,*col,symbol));
 }
 
 

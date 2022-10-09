@@ -21,7 +21,7 @@ ostream& operator<<(ostream& os, Board& board){
      return os;
 }
 
-bool Board::putSymbol(int i, int j, Symbol symbol){
+bool Board::playerPutSymbol(int i, int j, Symbol symbol){
      if(!inBounds(i,j)){
           cout<<"This is not a game! Choose a valid place!"<<endl;
           cout<<"Please enter valid row and column numbers"<<endl;
@@ -38,8 +38,21 @@ bool Board::putSymbol(int i, int j, Symbol symbol){
      }     
 }
 
+
+bool Board::computerPutSymbol(int i, int j, Symbol symbol){
+     if(!inBounds(i,j) || ! isFree(i,j)){
+          return false;
+     }
+     else{
+          board[i-1][j-1] = symbol;
+          return true;          
+     }     
+}
+
+
+
 bool Board::isFree(int i, int j){
-     cout<<endl<<"isFree Check:"<<endl<<"i is: "<<i<<"  and j is: "<<j <<endl<<endl;
+   //  cout<<endl<<"isFree Check:"<<endl<<"i is: "<<i<<"  and j is: "<<j <<endl<<endl;
      return board[i-1][j-1]==Symbol::Empty;
 }
 bool Board::inBounds(int i, int j){

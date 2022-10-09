@@ -23,7 +23,9 @@ private:
 public:
      Board();
      ~Board() = default;
-     bool putSymbol(int i, int j, Symbol symbol);
+     bool playerPutSymbol(int i, int j, Symbol symbol);
+     bool computerPutSymbol(int i, int j, Symbol symbol);
+
      friend ostream& operator<<(ostream& os, Board& board);
      bool isFree(int i, int j);
      bool inBounds(int i, int j);
