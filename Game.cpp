@@ -33,18 +33,17 @@ void Game::makeMove(){
 
      cout<<board<<endl;
      
-     checkWin(i,j,turn);//להפוך את זה לבוליאני כדי שיהיה אפשר לפי זה להגיד אם נגמר לעדכן משתנה
-     /*
+    // checkWin(i,j,turn);//להפוך את זה לבוליאני כדי שיהיה אפשר לפי זה להגיד אם נגמר לעדכן משתנה
+     
      if(checkWin(i,j,turn) || gameBoardFull() ){
           isGameOver = true;
      }
      else{
           changeTurn();//ככה רק אם לא נגמר המשחק נשנה את התור.
-
      }
-     */
+     
 
-     changeTurn();
+   //  changeTurn();
 
 
 }
@@ -52,19 +51,14 @@ void Game::changeTurn(){
      if(turn == CurrentTurn::Computer)turn = CurrentTurn::Player;
      else turn = CurrentTurn::Computer;
 }
-void Game::checkWin(int i, int j, CurrentTurn turn){
+bool Game::checkWin(int i, int j, CurrentTurn turn){
      if(board.diagonalCheck(i,j)||board.horizontalCheck(i)||board.verticalCheck(j)){
           cout<<turn<<endl;
-
-     //   isGameOver = true;
-     //   switch(turn)
-     //
-     //
-     //   declareWinner(); 
-     //        
-     //   return true
+          isGameOver = true; 
+          declareWinner();   
+          return true;
      }
-     //return false;
+     return false;
 }
 
 ostream& operator<<(ostream& os, CurrentTurn& turn){
@@ -93,18 +87,18 @@ Move* Game::makeComputerMove(Level level, Board* board, Symbol symbol){
      break;
      }
 }
-//gameBoardFull{
-//     if(board.boardFull()){
-//          if(!checkWin())     
-//               state = State::Tie;
-//          return true; 
-//     }
-//     return false;
-//}
-//bool Game::gameOver(GameState* state){
-//*state = this->state;     
-//return isGameOver;
-//}
+bool Game::gameBoardFull(){
+    if(board.boardFull()){
+         if(!(checkWin(0,0,turn)||checkWin(1,1,turn)||checkWin(2,2,turn)))     
+              state = GameState::Tie;
+         return true; 
+    }
+    return false;
+}
+bool Game::gameOver(GameState* state){
+*state = this->state;     
+return isGameOver;
+}
 
 
 void Game::declareWinner(){

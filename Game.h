@@ -35,7 +35,9 @@ public:
 //אחר כך נעשה בכל מקרה בדיקת נצחון
 
      
-     void checkWin(int i, int j, CurrentTurn turn);
+     bool checkWin(int i, int j, CurrentTurn turn);
+     bool gameBoardFull();
+     bool gameOver(GameState* state);
      void declareWinner();
      Move* makeComputerMove(Level level, Board* board, Symbol symbol);//Factory
 

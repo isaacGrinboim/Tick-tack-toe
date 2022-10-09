@@ -9,10 +9,11 @@ using namespace std;
 #include <exception>
 
 #define BOARD_SIZE 3
-
+/*
 class InvalidIndex: public exception{
      const char* what() const noexcept override{ return "Invalid Index!"; }
 };
+*/
 
 class Board
 {
