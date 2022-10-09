@@ -39,7 +39,7 @@ bool Board::putSymbol(int i, int j, Symbol symbol){
 }
 
 bool Board::isFree(int i, int j){
-     //cout<<endl<<"isFree Check:"<<endl<<"i is: "<<i<<"  and j is: "<<j <<endl<<endl;
+     cout<<endl<<"isFree Check:"<<endl<<"i is: "<<i<<"  and j is: "<<j <<endl<<endl;
      return board[i-1][j-1]==Symbol::Empty;
 }
 bool Board::inBounds(int i, int j){
