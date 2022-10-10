@@ -1,10 +1,14 @@
 #include "Game.h"
-
+#include "Score.h"
 int main(){
      //CurrentTurn playerStarts = CurrentTurn::Player;
      //turn = Player wants to be first -> turn = 0;
 
-     
+     Score score;
+
+
+      
+
      Game newGame(CurrentTurn::Player);
      GameState state;
      while(!newGame.gameOver(&state)){
@@ -16,8 +20,10 @@ int main(){
      // for (int i = 0; i < 20; i++){
      //      newGame.makeMove();
      // }
+     score+=state;
 
-     cout<<"Game State is: "<<endl;
+     cout<<"Game State is: "<<state<<endl;
+     cout<<"Game score is: "<<score;
      int g;
      cin>>g;
      return 0;

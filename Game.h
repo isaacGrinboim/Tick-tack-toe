@@ -5,7 +5,7 @@
 
 enum class CurrentTurn{Player,Computer};
 enum class Level{Easy,Moderate,Hard};
-enum class GameState{Win,Loss,Tie};
+#include "GameState.h"
 
 class Game
 {
@@ -40,7 +40,7 @@ public:
      bool gameOver(GameState* state);
      void declareWinner();
      Move* makeComputerMove(Level level, Board* board, Symbol symbol);//Factory
-
+     
 };
 
 ostream& operator<<(ostream& os, CurrentTurn& turn);
