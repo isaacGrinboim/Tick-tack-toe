@@ -20,8 +20,8 @@ Score& Score::operator+=(GameState& state){
      return *this;
 }
 ostream& operator<<(ostream& os, Score& score){
-     os<<"Current wins: " <<score.win<<endl
+     os<<"Current wins:   " <<score.win<<endl
      <<"               Current losses: "<<score.loss<<endl
-     <<"               current ties: "<< score.tie<<endl;
+     <<"               current ties:   "<< score.tie<<endl;
      return os;
 }

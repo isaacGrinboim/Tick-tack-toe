@@ -8,3 +8,4 @@ enum class GameState{Win,Loss,Tie};
 ostream& operator<<(ostream& os, GameState& symbol);
 
 #endif
+

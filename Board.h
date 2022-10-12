@@ -33,6 +33,8 @@ public:
      bool verticalCheck(int j);
      bool diagonalCheck(int i, int j);
      bool boardFull() const;
+     int toBlock(Symbol symbol);
+     int toWin(Symbol symbol);
      
 
 };
