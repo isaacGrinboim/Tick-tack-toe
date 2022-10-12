@@ -1,3 +1,7 @@
+#ifndef COMPUTER_MOVE_H
+#define COMPUTER_MOVE_H
+
+
 #include "Move.h"
 #include <chrono>
 #include <thread>
@@ -15,3 +19,5 @@ public:
 
 };
 
+
+#endif

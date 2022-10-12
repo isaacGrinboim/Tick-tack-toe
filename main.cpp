@@ -1,16 +1,29 @@
 #include "Game.h"
 #include "Score.h"
-
-void playSingleGame(Score* score);
+void playSingleGame(Score* score, CurrentTurn& gameTurn);
 bool makeDesicion();
-bool validPlaying(const string& playing);
+bool validChoise(const string& playing);
 
 int main(){
+      CurrentTurn gameStartingTurn;
       Score score;
       bool keepPlay = true;
-      while (keepPlay)
+      // Symbol playerSymbol;
+
+      // cout<<"Welcome to Tic Tac Toe game!"<<endl
+      // <<"Please choose X or O"<<endl;
+
+
+      cout<<"Do you wish to start?"<<endl;
+      if(makeDesicion()){
+       gameStartingTurn = CurrentTurn::Player;
+      }
+      else{
+       gameStartingTurn = CurrentTurn::Computer;
+      }
+      while(keepPlay)
       {
-        playSingleGame(&score);
+        playSingleGame(&score ,gameStartingTurn);
         cout<<endl<<"Game score is: "<<score<<endl;
         cout<<"Do you wish to play another game?"<<endl;
         keepPlay = makeDesicion();
@@ -24,32 +37,54 @@ int main(){
 }
 
 
-void playSingleGame(Score* score/*player, symbol, level   */){
-  Game newGame(CurrentTurn::Player/*player, symbol, level   */);
+void playSingleGame(Score* score, CurrentTurn& gameTurn){
+  //CurrentTurn firstTurn, Symbol symbol, Level level
+  Level level; int n=0;
+  cout<<"Enter 1, 2 or 3 for Easy, Moderate or Hard"<<endl;
+  cin>>n;
+  switch (n)
+  {
+  case 1:
+    level = Level::Easy;
+    break;
+  case 2:
+    level = Level::Moderate;
+    break;  
+  case 3:
+    level = Level::Hard;
+    break;
+
+  default:
+    level = Level::Easy;
+    break;
+  }
+
+  Game newGame(gameTurn, Symbol::X, level);
   GameState state;
   while(!newGame.gameOver(&state)){
     newGame.makeMove();            
   }
   *score+=state;
+  flipTurn(gameTurn);//משנה את הראשון שיתחיל לסירוגין
 }
 
 bool makeDesicion(){
   cin.ignore();
-  string playing;
-  while(!validPlaying(playing))
+  string choise;
+  while(!validChoise(choise))
     {
     cout<<"Please enter Yes/No"<<endl;
-    getline(cin, playing);
+    getline(cin, choise);
   }
-  if(playing == "Yes"||playing == "yes"){
+  if(choise == "Yes"||choise == "yes"){
     cout<<endl<<"New game!"<<endl<<endl;
     return true;
   }
   else {return false;}
 }
 
-bool validPlaying(const string& playing){
-  return playing=="no" || playing=="yes" || playing == "Yes" || playing == "No";
+bool validChoise(const string& choise){
+  return choise=="no" || choise=="yes" || choise == "Yes" || choise == "No";
 }
 
 

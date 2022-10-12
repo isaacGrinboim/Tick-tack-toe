@@ -62,6 +62,8 @@ bool Game::checkWin(int i, int j, CurrentTurn turn){
 }
 
 ostream& operator<<(ostream& os, CurrentTurn& turn){
+     sleep_for(nanoseconds(10));
+     sleep_until(system_clock::now() + seconds(1));
      switch(turn)
     {
         case CurrentTurn::Computer:    os<<"You have lost to the computer";      break;
@@ -80,8 +82,8 @@ ostream& operator<<(ostream& os, CurrentTurn& turn){
 Move* Game::makeComputerMove(Level level, Board* board, Symbol symbol){
      switch(level)
      {
-     case Level::Easy:       return new EasyComputerMove(board, symbol);    break;
-     //case Level::Moderate: return new ModerateComputerMove(board, symbol);  break;
+     case Level::Easy:       return new EasyComputerMove(board, symbol);      break;
+     case Level::Moderate:   return new ModerateComputerMove(board, symbol);  break;
      //case Level::Hard:     return new HardComputerMove(board, symbol);      break;
      default: return new EasyComputerMove(board, symbol);
      break;

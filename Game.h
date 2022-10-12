@@ -2,10 +2,12 @@
 #include <vector>
 #include "PlayerMove.h"
 #include "EasyComputerMove.h"
+#include "ModerateComputerMove.h"
 
-enum class CurrentTurn{Player,Computer};
+//enum class CurrentTurn{Player,Computer};
 enum class Level{Easy,Moderate,Hard};
 #include "GameState.h"
+#include "CurrentTurn.h"
 
 class Game
 {
@@ -22,7 +24,7 @@ private:
 
 
 public:
-     Game(CurrentTurn firstTurn, Symbol symbol = Symbol::X, Level level=Level::Easy);
+     Game(CurrentTurn firstTurn, Symbol symbol = Symbol::X, Level level=Level::Moderate);
      void makeMove();//תהיה בדיקה איזה תור זה
      //לפי זה ניצור אינסטנס של command
      //נעשה את המתודה שלו ונשמור אותו בוקטור
