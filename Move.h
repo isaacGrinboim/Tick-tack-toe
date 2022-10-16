@@ -13,7 +13,7 @@ protected:
 public:
      Move(Board* board, Symbol symbol):board(board),symbol(symbol){}
      virtual ~Move() = default;
-     virtual void makeMove() = 0;
+     virtual void makeMove(int* row, int* col) = 0;
 
 };
 

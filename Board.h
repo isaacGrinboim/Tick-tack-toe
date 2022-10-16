@@ -1,5 +1,3 @@
-
-
 #ifndef BOARD_H
 #define BOARD_H
 
@@ -10,10 +8,6 @@ using namespace std;
 
 #define BOARD_SIZE 3
 
-class InvalidIndex: public exception{
-     const char* what() const noexcept override{ return "Invalid Index!"; }
-};
-
 class Board
 {
 private:
@@ -22,11 +16,19 @@ private:
 public:
      Board();
      ~Board() = default;
-     void putSymbol(int i, int j, Symbol symbol);
+     bool playerPutSymbol(int i, int j, Symbol symbol);
+     bool computerPutSymbol(int i, int j, Symbol symbol);
+
      friend ostream& operator<<(ostream& os, Board& board);
      bool isFree(int i, int j);
-     
-
+     bool inBounds(int i, int j);
+     bool horizontalCheck();
+     bool verticalCheck();
+     bool diagonalCheck();
+     bool isThereAWin();
+     bool boardFull() const;
+     int toBlock(Symbol symbol);
+     int toWin(Symbol symbol);
 };
 
 
