@@ -6,6 +6,8 @@ void PlayerMove::makeMove(int* row, int* col) {
      cin>> i >> j;
 
      while(!board->playerPutSymbol(i,j,symbol)){
+          cin.clear();
+          cin.ignore(256,'\n');
           cin>> i >> j;
      }
      *row = i;

@@ -6,13 +6,9 @@ Game::Game(CurrentTurn firstTurn, Symbol symbol, Level level):
      symbols[0] = symbol;
      if(symbol==Symbol::O) symbols[1] = Symbol::X;
      else symbols[1] = Symbol::O;
-     /*
-     board.putSymbol(1,1,symbol);
-     cout<<endl<<"constructor:"<<endl<<"symbols[0]: "<<symbols[0]<<" symbols[1]: "<<
-     symbols[1]<<endl<<endl<<"Board:"<<endl<<board<<endl;
-     */
 }
 void Game::makeMove(){
+
      int i=0, j=0;
      if  (turn == CurrentTurn::Player){
           Move* newMove = new PlayerMove(&board, symbols[0]);
@@ -35,7 +31,7 @@ void Game::makeMove(){
      
     // checkWin(i,j,turn);//להפוך את זה לבוליאני כדי שיהיה אפשר לפי זה להגיד אם נגמר לעדכן משתנה
      
-     if(checkWin(i,j,turn) || gameBoardFull() ){
+     if(checkWin(i,j,turn)/* || gameBoardFull()*/ ){
           isGameOver = true;
      }
      else{
@@ -52,10 +48,15 @@ void Game::changeTurn(){
      else turn = CurrentTurn::Computer;
 }
 bool Game::checkWin(int i, int j, CurrentTurn turn){
-     if(board.diagonalCheck(i,j)||board.horizontalCheck(i)||board.verticalCheck(j)){
+     if(board.isThereAWin()){
           cout<<turn<<endl;
           isGameOver = true; 
           declareWinner();   
+          return true;
+     }
+     else if(gameBoardFull()){
+          isGameOver = true;
+          cout<<"Its a Tie!"<<endl;
           return true;
      }
      return false;
@@ -84,19 +85,21 @@ Move* Game::makeComputerMove(Level level, Board* board, Symbol symbol){
      {
      case Level::Easy:       return new EasyComputerMove(board, symbol);      break;
      case Level::Moderate:   return new ModerateComputerMove(board, symbol);  break;
-     //case Level::Hard:     return new HardComputerMove(board, symbol);      break;
+     case Level::Hard:       return new HardComputerMove(board, symbol);      break;
      default: return new EasyComputerMove(board, symbol);
      break;
      }
 }
 bool Game::gameBoardFull(){
     if(board.boardFull()){
-         if(!(checkWin(0,0,turn)||checkWin(1,1,turn)||checkWin(2,2,turn)))     
-              state = GameState::Tie;
+         if(!(board.isThereAWin())){ 
+               state = GameState::Tie;
+          }
          return true; 
     }
     return false;
 }
+
 bool Game::gameOver(GameState* state){
 *state = this->state;     
 return isGameOver;

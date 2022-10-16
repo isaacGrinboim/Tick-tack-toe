@@ -5,22 +5,22 @@ bool makeDesicion();
 bool validChoise(const string& playing);
 
 int main(){
-      CurrentTurn gameStartingTurn;
+      CurrentTurn gameStartingTurn = CurrentTurn::Player;
       Score score;
       bool keepPlay = true;
       // Symbol playerSymbol;
 
-      // cout<<"Welcome to Tic Tac Toe game!"<<endl
+      cout<<"Welcome to Tic Tac Toe game!"<<endl;
       // <<"Please choose X or O"<<endl;
 
-
+      /*
       cout<<"Do you wish to start?"<<endl;
       if(makeDesicion()){
        gameStartingTurn = CurrentTurn::Player;
       }
       else{
        gameStartingTurn = CurrentTurn::Computer;
-      }
+      }*/
       while(keepPlay)
       {
         playSingleGame(&score ,gameStartingTurn);
@@ -35,6 +35,15 @@ int main(){
      cin>>g;
      return 0;
 }
+
+
+
+
+
+
+
+
+
 
 
 void playSingleGame(Score* score, CurrentTurn& gameTurn){
@@ -64,9 +73,23 @@ void playSingleGame(Score* score, CurrentTurn& gameTurn){
   while(!newGame.gameOver(&state)){
     newGame.makeMove();            
   }
+  cout<<"Game has ended"<<endl;
   *score+=state;
   flipTurn(gameTurn);//משנה את הראשון שיתחיל לסירוגין
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 bool makeDesicion(){
   cin.ignore();

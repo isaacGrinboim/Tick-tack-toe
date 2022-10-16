@@ -52,49 +52,46 @@ bool Board::computerPutSymbol(int i, int j, Symbol symbol){
 
 
 bool Board::isFree(int i, int j){
-   //  cout<<endl<<"isFree Check:"<<endl<<"i is: "<<i<<"  and j is: "<<j <<endl<<endl;
      return board[i-1][j-1]==Symbol::Empty;
 }
 bool Board::inBounds(int i, int j){
      return (0<=(i-1)&&(i-1)<=2 && 0<=(j-1)&&(j-1)<=2);
 }
-bool Board::horizontalCheck(int i){
-     bool win = true;
-     for(int k = 0; k<BOARD_SIZE; ++k){//horizontal check
-          if(board[i-1][k]!=board[i-1][0]){
-               win = false;
-          }
-     }
-     return win;
-}
-bool Board::verticalCheck(int j){
-     bool win = true;
-     for(int k = 0; k<BOARD_SIZE; ++k){//vertical check
-          if(board[k][j-1]!=board[0][j-1]){
-               win = false;
-          }
-     }
-     return win;
-}
-
-
-     bool Board::diagonalCheck(int i, int j){
-          if(board[1][1]!=Symbol::Empty){
-               if(board[2][0]==board[1][1] && board[2][0]==board[0][2]){
+bool Board::horizontalCheck(){
+     for(int i =0; i<BOARD_SIZE; ++i){
+         if(board[i][0]==board[i][1] && board[i][0]==board[i][2]){
+               if(board[i][0]!=Symbol::Empty){
                     return true;
                }
-          }
-          if(i!=j){
-               return false;
-          }
-          bool win = true;
-          for(int k=0; k<BOARD_SIZE;++k){
-               if(board[k][k]!=board[0][0]){
-                    win = false;
-               }
-          }
-          return win;
+         }
      }
+     return false;
+}
+
+bool Board::verticalCheck(){
+     for(int j =0; j<BOARD_SIZE; ++j){
+         if(board[0][j]==board[1][j] && board[0][j]==board[2][j]){
+               if(board[0][j]!=Symbol::Empty){
+                    return true;
+               }
+         }
+     }
+     return false;
+}
+
+
+bool Board::diagonalCheck(){
+     if(board[1][1]==Symbol::Empty){
+          return false;
+     }
+     if(board[2][0]==board[1][1] && board[2][0]==board[0][2]){
+                    return true;
+               }
+     if(board[0][0]==board[1][1] && board[2][2]==board[1][1]){
+                    return true;
+               }     
+     return false;
+}
 
      
 
@@ -149,8 +146,8 @@ int Board::toWin(Symbol symbol){
      }
      return -1;
 
-}/*
-#  #  #
-#  #  #
-#  #  #
-*/
+}
+
+bool Board::isThereAWin(){
+     return horizontalCheck()||verticalCheck()||diagonalCheck();
+}

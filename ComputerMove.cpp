@@ -1,9 +1,7 @@
 #include "ComputerMove.h"
 
 void ComputerMove::makeMove(int* row, int* col) {
-     //צריך לשמור זמנית את האברים הריקים בתור צמדים
-     //צריך להגריל מי מהם יהיה זה שבוחרים
-     //צריך לחכות שנייה ורק אז להדפיס    
+   
      int randomNumber = rand()%(BOARD_SIZE*BOARD_SIZE);// אולי למצוא דרך אחרת להגריל מספר
      do{
           *row = randomNumber/BOARD_SIZE+1;

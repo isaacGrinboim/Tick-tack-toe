@@ -1,13 +1,14 @@
-#include "Board.h"
+
 #include <vector>
+#include "Board.h"
 #include "PlayerMove.h"
 #include "EasyComputerMove.h"
 #include "ModerateComputerMove.h"
-
-//enum class CurrentTurn{Player,Computer};
-enum class Level{Easy,Moderate,Hard};
+#include "HardComputerMove.h"
 #include "GameState.h"
 #include "CurrentTurn.h"
+enum class Level{Easy,Moderate,Hard};
+
 
 class Game
 {

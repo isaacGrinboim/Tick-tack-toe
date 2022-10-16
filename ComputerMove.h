@@ -15,8 +15,6 @@ public:
      void makeMove(int* row, int* col) override;
      bool canWin(int* row, int* col);
      bool canBlock(int* row, int* col);
-
-
 };
 
 
